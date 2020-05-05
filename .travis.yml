@@ -11,7 +11,7 @@ matrix:
     #- choco install visualstudio2017-workload-vctools -y --package-parameters "--no-includeRecommended --add Microsoft.VisualStudio.Component.VC.x86.amd64 --add Microsoft.VisualStudio.Component.Windows10SDK"
     script:
     - mkdir build && cd build
-    - dir "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC"
+    - dir "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
 #    - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86 && set'
 
 
