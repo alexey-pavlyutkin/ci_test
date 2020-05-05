@@ -6,13 +6,11 @@ matrix:
 
   - name: "MSVC on Windows"
     os: windows
-    env:
-    - CC="C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\cl"
-    - CXX="C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\cl"
     # MSVC is already installed on Travis, keep it here just in case we need to use it later
     #install:
     #- choco install visualstudio2017-workload-vctools -y --package-parameters "--no-includeRecommended --add Microsoft.VisualStudio.Component.VC.x86.amd64 --add Microsoft.VisualStudio.Component.Windows10SDK"
     script:
+    - set PATH=%PATH%;"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
     - mkdir build && cd build
     - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "NMake Makefiles" ..'
 #    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build .'
