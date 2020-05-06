@@ -6,6 +6,6 @@ file( GLOB test_sources *.cpp )
 
 add_executable( regression ${test_sources} )
 #target_link_libraries( regression PRIVATE jb )
-target_link_libraries( regression PRIVATE GTest::GTest GTest::Main )
+#target_link_libraries( regression PRIVATE GTest::GTest GTest::Main )
 
-gtest_add_tests( TARGET regression AUTO )
+#gtest_add_tests( TARGET regression AUTO )

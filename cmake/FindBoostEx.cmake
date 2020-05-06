@@ -1,16 +1,16 @@
-cmake_minimum_required( VERSION 3.15 )
+cmake_minimum_required( VERSION 3.13 )
 
 #
 # define path for Boost as external project
 #
-set( EXTERNAL_DIR ${PROJECT_SOURCE_DIR}/external )
-set( BOOST_DIR ${EXTERNAL_DIR}/boost )
+set( external_dir ${PROJECT_SOURCE_DIR}/external )
+set( boost_dir ${external_dir}/boost )
 
 #
 # provide hints for FindBoost
 #
-set( BOOST_INCLUDEDIR ${BOOST_DIR} )
-#set( BOOST_LIBRARYDIR ${BOOST_DIR}/stage/lib )
+set( BOOST_INCLUDEDIR ${boost_dir} )
+set( BOOST_LIBRARYDIR ${boost_dir}/stage/lib )
 
 #
 # try find Boost 1.67+
@@ -27,10 +27,10 @@ if ( Boost_FOUND AND Boost_LIB_VERSION STRGREATER_EQUAL "1.67.0" )
 else()
 
     #
-    # make sure ./external folder exists and does not contain boost folder
+    # make sure ./externals folder exists and does not contain boost folder
     #
-    file( MAKE_DIRECTORY ${EXTERNAL_DIR} )
-    file( REMOVE_RECURSE ${BOOST_DIR} )
+    file( MAKE_DIRECTORY ${external_dir} )
+    file( REMOVE_RECURSE ${boost_dir} )
 
     #
     # gonna use Git to download Boost from Github
@@ -45,7 +45,7 @@ else()
     #
     execute_process(
         COMMAND ${GIT_EXECUTABLE} clone --recurse-submodules https://github.com/boostorg/boost
-        WORKING_DIRECTORY ${EXTERNAL_DIR}
+        WORKING_DIRECTORY ${external_dir}
         TIMEOUT 14400
         RESULT_VARIABLE git_result
     )
@@ -58,32 +58,32 @@ else()
     # define bootstrap and build commands
     #
     if ( WIN32 )
-        set( BOOST_BOOTSTRAP "bootstrap.bat" )
-#        set( boost_build "b2.exe runtime-link=static,shared link=static,shared" )
-        set( BOOST_BUILD "b2 headers" )
+        set( boost_bootstrap "bootstrap.bat" )
     elseif ( UNIX )
-        set( BOOST_BOOTSTRAP "bootstrap.sh" )
-        set( BOOST_BUILD "b2 headers" )
+        set( boost_bootstrap "bootstrap.sh" )
     else()
         message( FATAL_ERROR "Dunno how to build Boost library!" )
+    endif()
+
+    #
+    # bootstrap Boost
+    #
+    execute_process(
+        COMMAND ${boost_bootstrap}
+        WORKING_DIRECTORY ${boost_dir}
+        RESULT_VARIABLE boost_bootstrap_result
+    )
+
+    if ( NOT boost_bootstrap_result EQUAL 0 )
+        message( FATAL_ERROR "Unable to bootstrap Boost library!" )
     endif()
 
     #
     # build Boost
     #
     execute_process(
-        COMMAND ${BOOST_BOOTSTRAP}
-        WORKING_DIRECTORY ${BOOST_DIR}
-        RESULT_VARIABLE boost_bootstrap_result
-    )
-
-    if ( NOT boost_bootstrap_result EQUAL 0 )
-        message( FATAL_ERROR "Unable to build Boost library!" )
-    endif()
-
-    execute_process(
-        COMMAND ${BOOST_BUILD}
-        WORKING_DIRECTORY ${BOOST_DIR}
+        COMMAND b2 headers
+        WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_build_result
     )
 
@@ -94,7 +94,6 @@ else()
     #
     # let caller know include and library paths
     #
-    set( Boost_INCLUDE_DIRS ${BOOST_DIR}/boost )
-    #set( Boost_LIBRARY_DIRS ${BOOST_DIR}/stage/lib )
-
+    set( Boost_INCLUDE_DIRS ${boost_dir}/boost )
+    #set( Boost_LIBRARY_DIRS ${boost_dir}/stage/lib )
 endif()
