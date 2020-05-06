@@ -1,4 +1,5 @@
-int main ( int argc, char *argv[] )
+#include <gtest/gtest.h>
+
+TEST( dummy, zero )
 {
-    return 0;
 }

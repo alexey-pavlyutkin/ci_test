@@ -14,5 +14,9 @@ option( BUILD_KVS_STRESS  "Build stress tests"     ON )
 
 find_package( BoostEx )
 
+if ( BUILD_KVS_TESTS )
+    find_package( GTestEx )
+endif()
+
 add_subdirectory( src )
 add_subdirectory( test )
