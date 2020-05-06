@@ -12,5 +12,7 @@ endif()
 option( BUILD_KVS_TESTS   "Build regression tests" ON )
 option( BUILD_KVS_STRESS  "Build stress tests"     ON )
 
+find_package( BoostEx )
+
 add_subdirectory( src )
 add_subdirectory( test )
