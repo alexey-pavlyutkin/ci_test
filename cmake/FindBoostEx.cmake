@@ -65,11 +65,13 @@ else()
         message( FATAL_ERROR "Dunno how to build Boost library!" )
     endif()
 
+    message( STATUS "boost_bootstrap =" ${boost_bootstrap} )
+
     #
     # bootstrap Boost
     #
     execute_process(
-        COMMAND bootstrap
+        COMMAND ${boost_bootstrap}
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_bootstrap_result
     )
