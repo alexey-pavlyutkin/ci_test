@@ -58,14 +58,12 @@ else()
     # define bootstrap and build commands
     #
     if ( WIN32 )
-        set( boost_bootstrap "bootstrap.bat" )
+        set( boost_bootstrap "./bootstrap.bat" )
     elseif ( UNIX )
-        set( boost_bootstrap "bootstrap.sh" )
+        set( boost_bootstrap "./bootstrap.sh" )
     else()
         message( FATAL_ERROR "Dunno how to build Boost library!" )
     endif()
-
-    message( STATUS "boost_bootstrap =" ${boost_bootstrap} )
 
     #
     # bootstrap Boost
@@ -84,7 +82,7 @@ else()
     # build Boost
     #
     execute_process(
-        COMMAND b2 headers
+        COMMAND ./b2 headers
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_build_result
     )
