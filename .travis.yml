@@ -4,16 +4,29 @@ install: true
 matrix:
   include:
 
-  - name: "MSVC on Windows"
-    os: windows
-    script:
-    - mkdir build && cd build
-    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Visual Studio 15 2017" ..'
-    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Debug --target regression'
-    - ctest -C debug
-    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Release --target regression'
-    - ctest -C release
+#  - name: "MSVC on Windows"
+#    os: windows
+#    script:
+#    - mkdir build && cd build
+#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Visual Studio 15 2017" ..'
+#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Debug --target regression'
+#    - ctest -C Debug
+#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Release --target regression'
+#    - ctest -C Release
 
+  - name: "GCC on Windows"
+    os: windows
+    env:
+    - CC="/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/x86_64-w64-mingw32-gcc"
+    - CXX="/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/x86_64-w64-mingw32-g++"
+    install:
+    - choco upgrade mingw -y
+    - ${CC} --version
+    script:
+    - mkdir build-debug && cd build-debug
+    - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug ..
+    - cmake --build . --target regression
+    - ctest -C Debug
 
 branches:
   only:
