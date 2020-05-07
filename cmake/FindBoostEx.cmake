@@ -69,7 +69,7 @@ else()
     # bootstrap Boost
     #
     execute_process(
-        COMMAND ${boost_bootstrap}
+        COMMAND bootstrap
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_bootstrap_result
     )
