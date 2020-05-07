@@ -10,7 +10,7 @@ set( boost_dir ${external_dir}/boost )
 # provide hints for FindBoost
 #
 set( BOOST_INCLUDEDIR ${boost_dir} )
-set( BOOST_LIBRARYDIR ${boost_dir}/stage/lib )
+#set( BOOST_LIBRARYDIR ${boost_dir}/stage/lib )
 
 #
 # try find Boost 1.67+

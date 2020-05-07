@@ -9,7 +9,7 @@ set( gtest_cmake ${gtest_dir}/CMakeLists.txt )
 
 if ( NOT EXISTS ${gtest_cmake} )
     #
-    # make sure ./externals folder exists and does not contain boost folder
+    # make sure ./external folder exists and does not contain gtest folder
     #
     file( MAKE_DIRECTORY ${external_dir} )
     file( REMOVE_RECURSE ${gtest_dir} )
@@ -52,4 +52,4 @@ include( GoogleTest )
 #
 # for multiple-configuration place GTest targets to 'externals' folder
 #
-set_target_properties( gtest gtest_main PROPERTIES FOLDER externals )
+set_target_properties( gtest gtest_main PROPERTIES FOLDER external )

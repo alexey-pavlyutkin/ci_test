@@ -15,6 +15,7 @@ option( BUILD_KVS_STRESS  "Build stress tests"     ON )
 find_package( BoostEx )
 
 if ( BUILD_KVS_TESTS )
+    enable_testing()
     find_package( GTestEx )
 endif()
 
