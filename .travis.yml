@@ -4,15 +4,15 @@ install: true
 matrix:
   include:
 
-#  - name: "MSVC on Windows"
-#    os: windows
-#    script:
-#    - mkdir build && cd build
-#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Visual Studio 15 2017" ..'
-#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Debug'
-#    - ctest -C Debug
-#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Release'
-#    - ctest -C Release
+  - name: "MSVC on Windows"
+    os: windows
+    script:
+    - mkdir build && cd build
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Visual Studio 15 2017" ..'
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Debug'
+    - ctest -C Debug
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Release'
+    - ctest -C Release
 
   - name: "GCC on Windows"
     os: windows
