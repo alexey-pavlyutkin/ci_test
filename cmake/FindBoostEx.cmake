@@ -49,7 +49,6 @@ else()
         TIMEOUT 14400
         RESULT_VARIABLE git_result
     )
-
     if ( NOT git_result EQUAL 0 )
         message( FATAL_ERROR "Unable to download Boost library!" )
     endif()
@@ -58,7 +57,7 @@ else()
     # define bootstrap and build commands
     #
     if ( WIN32 )
-        set( boost_bootstrap "./bootstrap.bat" )
+        set( boost_bootstrap ".\\bootstrap.bat" )
     elseif ( UNIX )
         set( boost_bootstrap "./bootstrap.sh" )
     else()
@@ -73,7 +72,6 @@ else()
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_bootstrap_result
     )
-
     if ( NOT boost_bootstrap_result EQUAL 0 )
         message( FATAL_ERROR "Unable to bootstrap Boost library!" )
     endif()
@@ -86,7 +84,6 @@ else()
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_build_result
     )
-
     if ( NOT boost_build_result EQUAL 0 )
         message( FATAL_ERROR "Unable to build Boost library!" )
     endif()
