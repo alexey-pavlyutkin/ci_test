@@ -60,7 +60,7 @@ else()
     #
     if ( WIN32 )
         set( boost_bootstrap "./bootstrap.bat" )
-    else
+    else()
         set( boost_bootstrap "./bootstrap.sh" )
     endif()
 
