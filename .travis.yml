@@ -24,9 +24,9 @@ matrix:
     - ${CC} --version
     script:
     - mkdir build-debug && cd build-debug
-    - bash cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug ..
-    - bash cmake --build . --target regression
-    - bash ctest -C Debug
+    - bash -c 'cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug ..'
+    - bash -c 'cmake --build . --target regression'
+    - bash -c 'ctest -C Debug'
 
 branches:
   only:
