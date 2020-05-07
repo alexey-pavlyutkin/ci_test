@@ -53,22 +53,29 @@ else()
         message( FATAL_ERROR "Unable to download Boost library!" )
     endif()
 
+    message( STATUS )
+
     #
     # define bootstrap and build commands
     #
     if ( WIN32 )
-        set( boost_bootstrap ".\\bootstrap.bat" )
-    elseif ( UNIX )
+        set( boost_bootstrap "./bootstrap.bat" )
+    else
         set( boost_bootstrap "./bootstrap.sh" )
-    else()
-        message( FATAL_ERROR "Dunno how to build Boost library!" )
     endif()
+
+    if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC" )
+        set( boost_toolset "msvc" )
+    elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
+        set( boost_toolset "gcc" )
+    endif()
+
 
     #
     # bootstrap Boost
     #
     execute_process(
-        COMMAND ${boost_bootstrap} gcc
+        COMMAND ${boost_bootstrap} --with-toolset=${boost_toolset}
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_bootstrap_result
     )
