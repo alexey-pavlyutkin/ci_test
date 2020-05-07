@@ -59,23 +59,24 @@ else()
     # define bootstrap and build commands
     #
     if ( WIN32 )
-        set( boost_bootstrap "./bootstrap.bat" )
+        set( boost_bootstrap ".\\bootstrap.bat" )
     else()
         set( boost_bootstrap "./bootstrap.sh" )
     endif()
+    message( STATUS "boost_bootstrap =" ${boost_bootstrap} )
 
     if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC" )
-        set( boost_toolset "msvc" )
+        set( boost_bootstrap_toolset "--with-toolset=msvc" )
     elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
-        set( boost_toolset "gcc" )
+        set( boost_bootstrap_toolset "--with-toolset=gcc" )
     endif()
-
+    message( STATUS "boost_bootstrap_toolset =" ${boost_bootstrap_toolset} )
 
     #
     # bootstrap Boost
     #
     execute_process(
-        COMMAND ${boost_bootstrap} --with-toolset=${boost_toolset}
+        COMMAND ${boost_bootstrap} ${boost_bootstrap_toolset}
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_bootstrap_result
     )
