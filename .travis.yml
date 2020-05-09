@@ -21,7 +21,6 @@ matrix:
     - CXX="/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/x86_64-w64-mingw32-g++"
     install:
     - choco upgrade mingw -y
-    - ${CC} --version
     script:
     - mkdir build-debug && cd build-debug
     - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
@@ -32,6 +31,17 @@ matrix:
     - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
     - cmake --build .
     - ctest -C Release
+
+  - name: "Clang on Windows"
+    os: windows
+    env:
+    - CC="/c/Program Files/LLVM/bin/clang"
+    - CXX="/c/Program Files/LLVM/bin/clang++"
+    install:
+    - choco upgrade llvm -y
+    - choco install ninja
+    script:
+    - ninja --version
 
 branches:
   only:
