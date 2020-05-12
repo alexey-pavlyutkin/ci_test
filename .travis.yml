@@ -42,7 +42,7 @@ matrix:
     script:
     - ninja --version
     - mkdir build && cd build
-    - cmake -G "Ninja" .. -DCMAKE_CXX_LINK_EXECUTABLE="/c/Program Files/LLVM/bin/lld-link"
+    - cmake -G "Ninja" -DCMAKE_LINKER="d:/llvm/bin/lld-link.exe" ..
 
 branches:
   only:
