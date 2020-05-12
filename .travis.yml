@@ -38,12 +38,11 @@ matrix:
     - CC="/c/Program Files/LLVM/bin/clang-cl"
     - CXX="/c/Program Files/LLVM/bin/clang-cl"
     install:
-    - choco upgrade llvm -y
     - choco install ninja
     script:
     - ninja --version
     - mkdir build && cd build
-    - cmake -G "Ninja" .. -T"llvm"
+    - cmake -G "Ninja" ..
 
 branches:
   only:
