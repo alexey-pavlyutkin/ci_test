@@ -34,16 +34,15 @@ matrix:
 
   - name: "Clang on Windows"
     os: windows
-    env:
-    - CC="C:\Program Files\LLVM\bin\clang-cl"
-    - CXX="C:\Program Files\LLVM\bin\clang-cl"
+#    env:
+#    - CC="C:\Program Files\LLVM\bin\clang-cl"
+#    - CXX="C:\Program Files\LLVM\bin\clang-cl"
     install:
     - choco install ninja
     script:
-    - dir C:\Windows\System32
     - ninja --version
     - mkdir build && cd build
-    - cmake -G "Ninja" -DCMAKE_LINKER="C:\Program Files\LLVM\bin\lld-link.exe" -DCMAKE_SYSTEM_LIBRARY_PATH="C:\windows\System32"..
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Ninja" -DCMAKE_C_COMPILER="C:\Program Files\LLVM\bin\clang-cl" -DCMAKE_CXX_COMPILER="C:\Program Files\LLVM\bin\clang-cl" -DCMAKE_LINKER="C:\Program Files\LLVM\bin\lld-link.exe" ..'
 
 branches:
   only:
