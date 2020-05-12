@@ -35,13 +35,15 @@ matrix:
   - name: "Clang on Windows"
     os: windows
     env:
-    - CC="/c/Program Files/LLVM/bin/clang"
-    - CXX="/c/Program Files/LLVM/bin/clang++"
+    - CC="/c/Program Files/LLVM/bin/clang-cl"
+    - CXX="/c/Program Files/LLVM/bin/clang-cl"
     install:
     - choco upgrade llvm -y
     - choco install ninja
     script:
     - ninja --version
+    - mkdir build && cd build
+    - cmake -G "Ninja" .. -T"llvm"
 
 branches:
   only:
