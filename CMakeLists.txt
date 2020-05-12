@@ -1,5 +1,7 @@
 cmake_minimum_required( VERSION 3.15 FATAL_ERROR )
 
+message( STATUS "CMAKE_SYSTEM_LIBRARY_PATH = ${CMAKE_SYSTEM_LIBRARY_PATH}")
+
 project( kvs LANGUAGES CXX )
 
 set( CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
