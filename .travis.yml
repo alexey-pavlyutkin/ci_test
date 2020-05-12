@@ -43,7 +43,7 @@ matrix:
     - dir C:\Windows\System32
     - ninja --version
     - mkdir build && cd build
-    - cmake -G "Ninja" -DCMAKE_LINKER="C:\Program Files\LLVM\bin\lld-link.exe" ..
+    - cmake -G "Ninja" -DCMAKE_LINKER="C:\Program Files\LLVM\bin\lld-link.exe" -DCMAKE_SYSTEM_LIBRARY_PATH="C:\windows\System32"..
 
 branches:
   only:
