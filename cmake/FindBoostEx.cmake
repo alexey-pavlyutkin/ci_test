@@ -70,7 +70,7 @@ else()
     elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
         set( boost_bootstrap_toolset "gcc" )
     elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" )
-        set( boost_bootstrap_toolset "clang" )
+        set( boost_bootstrap_toolset "--with-toolset=clang" )
     endif()
     message( STATUS "boost_bootstrap_toolset =" ${boost_bootstrap_toolset} )
 
