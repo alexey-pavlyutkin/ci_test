@@ -78,7 +78,7 @@ else()
     # bootstrap Boost
     #
     execute_process(
-        COMMAND bootstrap --with-toolset=clang
+        COMMAND .\\bootstrap.bat --with-toolset=clang
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_bootstrap_result
     )
@@ -90,7 +90,7 @@ else()
     # build Boost
     #
     execute_process(
-        COMMAND b2 headers install --prefix=${CMAKE_BINARY_DIR}
+        COMMAND .\\b2 headers install --prefix=${CMAKE_BINARY_DIR}
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_build_result
     )
