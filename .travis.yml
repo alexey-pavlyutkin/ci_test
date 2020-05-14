@@ -37,10 +37,10 @@ matrix:
     env:
     - CC="/c/Program Files/LLVM/bin/clang-cl"
     - CXX="/c/Program Files/LLVM/bin/clang-cl"
-    install:
-    - choco install ninja
+#    install:
+#    - choco install ninja
     script:
-    - dir "C:\Program Files (x86)\Windows Kits"
+    - dir "C:\Program Files (x86)\Windows Kits\10\Lib"
 #    - mkdir build && cd build
 #    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Ninja" ..'
 
