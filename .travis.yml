@@ -39,11 +39,7 @@ matrix:
     - CXX="/c/Program Files/LLVM/bin/clang++"
     install:
     - choco install ninja
-    before_script:
-      - sudo apt-get update -qq
-      - sudo apt-get install libboost-all-dev
     script:
-    - ninja --version
     - mkdir build && cd build
     - cmake -G "Ninja" ..
 
