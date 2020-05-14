@@ -40,7 +40,7 @@ matrix:
     install:
     - choco install ninja
     script:
-    - dir "C:\Program Files (x86)\Microsoft Kits"
+    - dir "C:\Program Files (x86)\Windows Kits"
 #    - mkdir build && cd build
 #    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Ninja" ..'
 
