@@ -43,7 +43,7 @@ matrix:
     script:
 #    - dir "C:\Program Files (x86)\Windows Kits\10\Lib"
     - mkdir build && cd build
-    - cmake -G "Ninja" ..'
+    - cmake -G "Ninja" ..
 
 branches:
   only:
