@@ -35,8 +35,8 @@ matrix:
   - name: "Clang on Windows"
     os: windows
     env:
-    - CC="/c/Program Files/LLVM/bin/clang-cl"
-    - CXX="/c/Program Files/LLVM/bin/clang-cl"
+    - CC="/c/Program Files/LLVM/bin/clang++"
+    - CXX="/c/Program Files/LLVM/bin/clang++"
     - LLVM_LIB_SEARCH_PATH="/c/Program Files (x86)/Windows Kits/10/Lib/10.0.18362.0/um/x64"
     install:
     - choco install ninja
