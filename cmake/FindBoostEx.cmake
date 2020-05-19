@@ -59,7 +59,8 @@ else()
     #
     # define bootstrap and build commands
     #
-    if ( ${CMAKE_SYSTEM} STREQUAL "Windows" )
+    if ( WIN32 )
+
         set( boost_bootstrap ".\\bootstrap.bat" )
         set( boost_build ".\\b2" )
 
@@ -69,7 +70,8 @@ else()
             set( boost_bootstrap_toolset "mingw" )
         endif()
 
-    elseif ( ${CMAKE_SYSTEM} STREQUAL "Linux"  )
+    elseif ()
+
         set( boost_bootstrap "./bootstrap.sh" )
         set( boost_build "./b2" )
 
