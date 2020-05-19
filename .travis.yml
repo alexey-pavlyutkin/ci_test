@@ -43,6 +43,8 @@ matrix:
 
   - name: "gcc on Linux"
     os: linux
+    dist: bionic
+    sudo: false
     addons:
       apt:
         sources:
@@ -52,12 +54,8 @@ matrix:
     env:
     - CXX=g++-8
     install:
-    - sudo apt-get remove cmake
-    - wget https://github.com/Kitware/CMake/releases/download/v3.15.2/cmake-3.15.2.tar.gz
-    - tar -zxvf cmake-3.15.2.tar.gz
-    - cd cmake-3.15.2
-    - ./bootstrap
-    - sudo make install
+    - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+    - sudo apt-get update
     script:
     - cmake --version
 
