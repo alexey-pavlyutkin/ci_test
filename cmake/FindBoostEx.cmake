@@ -53,32 +53,40 @@ else()
         message( FATAL_ERROR "Unable to download Boost library!" )
     endif()
 
+    message( STATUS "CMAKE_SYSTEM =" ${CMAKE_SYSTEM} )
+    message( STATUS "CMAKE_CXX_COMPILER_ID =" ${CMAKE_CXX_COMPILER_ID} )
+
     #
     # define bootstrap and build commands
     #
-    if ( WIN32 )
+    if ( ${CMAKE_SYSTEM} STREQUAL "Windows" )
         set( boost_bootstrap ".\\bootstrap.bat" )
         set( boost_build ".\\b2" )
-    else()
+
+        if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC" )
+            set( boost_bootstrap_toolset "msvc" )
+        elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
+            set( boost_bootstrap_toolset "mingw" )
+        endif()
+
+    elseif ( ${CMAKE_SYSTEM} STREQUAL "Linux"  )
         set( boost_bootstrap "./bootstrap.sh" )
         set( boost_build "./b2" )
-    endif()
-    message( STATUS "boost_bootstrap =" ${boost_bootstrap} )
 
-    if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC" )
-        set( boost_bootstrap_toolset "msvc" )
-    elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
-        set( boost_bootstrap_toolset "gcc" )
-    elseif ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" )
-        set( boost_bootstrap_toolset "--with-toolset=clang" )
+        if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
+            set( boost_bootstrap_toolset "" )
+        endif()
+
     endif()
+
+    message( STATUS "boost_bootstrap =" ${boost_bootstrap} )
     message( STATUS "boost_bootstrap_toolset =" ${boost_bootstrap_toolset} )
 
     #
     # bootstrap Boost
     #
     execute_process(
-        COMMAND .\\bootstrap.bat --with-toolset=clang
+        COMMAND ${boost_bootstrap} ${boost_bootstrap_toolset}
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_bootstrap_result
     )
@@ -90,7 +98,7 @@ else()
     # build Boost
     #
     execute_process(
-        COMMAND .\\b2 headers install --prefix=${CMAKE_BINARY_DIR}
+        COMMAND ${boost_build} headers
         WORKING_DIRECTORY ${boost_dir}
         RESULT_VARIABLE boost_build_result
     )
