@@ -60,7 +60,7 @@ matrix:
     - sudo apt-get install cmake
     script:
     - cmake --version
-    - echo $path
+    - echo $PATH
 
 branches:
   only:
