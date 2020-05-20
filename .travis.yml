@@ -61,8 +61,8 @@ matrix:
     - sudo apt-get update
     - sudo apt-get install cmake
     script:
-    - cmake --version
-    - echo $PATH
+    - mkdir build-debug && cd build-debug
+    - cmake -G "Ninja" ..
 
 branches:
   only:
