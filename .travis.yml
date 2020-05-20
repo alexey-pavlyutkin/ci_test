@@ -61,8 +61,6 @@ matrix:
     - sudo apt-get install cmake
     - sudo apt-get install libboost-all-dev
     script:
-    - echo $BOOSTROOT
-    - echo $BOOST_ROOT
     - mkdir build-debug && cd build-debug
     - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug
     - cmake --build .

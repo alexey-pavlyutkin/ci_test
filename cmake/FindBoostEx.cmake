@@ -16,7 +16,7 @@ set( BOOST_INCLUDEDIR ${boost_dir} )
 # try find Boost 1.67+
 #
 cmake_policy( SET CMP0074 NEW )
-find_package( boost 1.67.0 )
+find_package( Boost 1.67.0 )
 
 if ( Boost_FOUND AND Boost_LIB_VERSION STRGREATER_EQUAL "1.67.0" )
 
