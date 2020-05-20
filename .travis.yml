@@ -4,42 +4,42 @@ install: true
 matrix:
   include:
 
-#  - name: "MSVC on Windows: x86"
-#    os: windows
-#    script:
-#    - mkdir build && cd build
-#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Visual Studio 15 2017" ..'
-#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Debug'
-#    - ctest -C Debug
-#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Release'
-#    - ctest -C Release
+  - name: "MSVC on Windows: x86"
+    os: windows
+    script:
+    - mkdir build && cd build
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Visual Studio 15 2017" ..'
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Debug'
+    - ctest -C Debug
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Release'
+    - ctest -C Release
 
-#  - name: "MSVC on Windows: x64"
-#    os: windows
-#    script:
-#    - mkdir build && cd build
-#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake -G "Visual Studio 15 2017" ..'
-#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake --build . --config Debug'
-#    - ctest -C Debug
-#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake --build . --config Release'
-#    - ctest -C Release
+  - name: "MSVC on Windows: x64"
+    os: windows
+    script:
+    - mkdir build && cd build
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake -G "Visual Studio 15 2017" ..'
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake --build . --config Debug'
+    - ctest -C Debug
+    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake --build . --config Release'
+    - ctest -C Release
 
-#  - name: "GCC on Windows"
-#    os: windows
-#    env:
-#    - CXX="/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/x86_64-w64-mingw32-g++"
-#    install:
-#    - choco upgrade mingw -y
-#    script:
-#    - mkdir build-debug && cd build-debug
-#    - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
-#    - cmake --build .
-#    - ctest -C Debug
-#    - cd ..
-#    - mkdir build-release && cd build-release
-#    - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
-#    - cmake --build .
-#    - ctest -C Release
+  - name: "GCC on Windows"
+    os: windows
+    env:
+    - CXX="/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/x86_64-w64-mingw32-g++"
+    install:
+    - choco upgrade mingw -y
+    script:
+    - mkdir build-debug && cd build-debug
+    - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
+    - cmake --build .
+    - ctest -C Debug
+    - cd ..
+    - mkdir build-release && cd build-release
+    - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
+    - cmake --build .
+    - ctest -C Release
 
   - name: "GCC on Linux"
     os: linux
@@ -65,12 +65,11 @@ matrix:
     - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr
     - cmake --build .
     - ctest -C Debug
-#
-#    - cd ..
-#    - mkdir build-release && cd build-release
-#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release
-#    - cmake --build .
-#    - ctest -C Release
+    - cd ..
+    - mkdir build-release && cd build-release
+    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release -DBOOST_ROOT:STRING=/usr
+    - cmake --build .
+    - ctest -C Release
 
 branches:
   only:
