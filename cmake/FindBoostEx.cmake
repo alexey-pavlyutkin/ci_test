@@ -18,7 +18,7 @@ set( BOOST_INCLUDEDIR ${boost_dir} )
 cmake_policy( SET CMP0074 NEW )
 find_package( Boost 1.67.0 )
 
-if ( Boost_FOUND AND Boost_LIB_VERSION STRGREATER_EQUAL "1.67.0" )
+if ( Boost_FOUND AND Boost_LIB_VERSION STRGREATER_EQUAL "1.62.0" )
 
     #
     # Boost found, Boost_INCLUDE_DIRS and Boost_LIBRARY_DIRS variables are defined
