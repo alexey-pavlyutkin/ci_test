@@ -70,7 +70,7 @@ else()
             set( boost_bootstrap_toolset "mingw" )
         endif()
 
-    elseif ()
+    else ()
 
         set( boost_bootstrap "./bootstrap.sh" )
         set( boost_build "./b2" )

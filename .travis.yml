@@ -60,6 +60,7 @@ matrix:
     - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
     - sudo apt-get update
     - sudo apt-get install cmake
+    - sudo apt-get install libboost-all-dev
     script:
     - mkdir build-debug && cd build-debug
     - cmake -G "Unix Makefiles" ..
