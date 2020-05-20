@@ -62,7 +62,7 @@ matrix:
     - sudo apt-get install cmake
     script:
     - mkdir build-debug && cd build-debug
-    - cmake -G "Ninja" ..
+    - cmake -G "Unix Makefiles" ..
 
 branches:
   only:
