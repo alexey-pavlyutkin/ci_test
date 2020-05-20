@@ -18,7 +18,8 @@ find_package( BoostEx )
 
 if ( BUILD_KVS_TESTS )
     enable_testing()
-    find_package( GTestEx )
+    message( STATUS "CMAKE_MODULE_PATH = ${CMAKE_MODULE_PATH}")
+    find_package( GtestEx )
 endif()
 
 add_subdirectory( src )
