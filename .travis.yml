@@ -62,15 +62,15 @@ matrix:
     - sudo apt-get install libboost-all-dev
     script:
     - mkdir build-debug && cd build-debug
-    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug
+    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr
     - cmake --build .
     - ctest -C Debug
-    #
-    - cd ..
-    - mkdir build-release && cd build-release
-    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release
-    - cmake --build .
-    - ctest -C Release
+#
+#    - cd ..
+#    - mkdir build-release && cd build-release
+#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release
+#    - cmake --build .
+#    - ctest -C Release
 
 branches:
   only:
