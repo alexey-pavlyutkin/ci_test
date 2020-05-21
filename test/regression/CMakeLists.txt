@@ -4,8 +4,8 @@ file( GLOB test_sources *.cpp )
 
 add_executable( regression ${test_sources} )
 
-message( STATUS "SANITIZE = ${SANITIZE}" )
-if ( ${SANITIZE} )
+if ( NOT ${SANITIZE} STREQUAL "" )
+    message( STATUS "Applying -fsanitize=${SANITIZE}" )
     target_compile_options( regression PRIVATE "-fsanitize=${SANITIZE}" )
 endif()
 
