@@ -81,8 +81,8 @@ matrix:
         sources:
         - ubuntu-toolchain-r-test
         - llvm-toolchain-trusty-7
-        packages:
-        - clang-7
+#        packages:
+#        - clang-7
     env:
     - CXX=clang++-7
     install:
