@@ -80,6 +80,9 @@ matrix:
       apt:
         sources:
         - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-7
+        packages:
+        - clang-7
     env:
     - CXX=clang++-7
     install:
@@ -91,6 +94,7 @@ matrix:
     - sudo apt-get install libboost-all-dev
     script:
     script:
+    - ls /usr/local/clang-7.0.0/bin
     - mkdir build-debug && cd build-debug
     - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr
     - cmake --build .
