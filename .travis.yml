@@ -85,6 +85,7 @@ matrix:
           key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
         packages:
         - cmake
+        - libboost-all-dev
 #        - clang-7
     env:
     - CXX=clang++
