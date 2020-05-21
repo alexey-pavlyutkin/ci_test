@@ -93,7 +93,7 @@ matrix:
     - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=address
     - cmake --build .
     - ctest -C Debug
-    cd ..
+    - cd ..
     - mkdir build-release && cd build-release
     - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=address
     - cmake --build .
