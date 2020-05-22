@@ -13,6 +13,7 @@ endif()
 if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
     foreach( opt ${SANITIZE} )
         target_compile_options( regression PRIVATE -fsanitize=${opt} )
+        target_link_options( regression PRIVATE -fsanitize=${opt} )
     endforeach()
 endif()
 
