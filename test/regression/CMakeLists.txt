@@ -12,7 +12,7 @@ endif()
 
 if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
     message( STATUS "SANITIZE=${SANITIZE}" )
-    foreach( opt IN LISTS ${SANITIZE} )
+    foreach( opt ${SANITIZE} )
         message( STATUS "Applying -fsanitize=${opt}" )
         target_compile_options( regression PRIVATE "-fsanitize=${opt}" )
     endforeach()
