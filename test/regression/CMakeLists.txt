@@ -4,7 +4,14 @@ file( GLOB test_sources *.cpp )
 
 add_executable( regression ${test_sources} )
 
+if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC" )
+  target_compile_options(${TARGET_NAME} PRIVATE /W4 /WX)
+else()
+  target_compile_options(${TARGET_NAME} PRIVATE -Wall -Wextra -pedantic -Werror)
+endif()
+
 if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
+    message( STATUS "SANITIZE=${SANITIZE}" )
     foreach( opt IN ${SANITIZE} )
         message( STATUS "Applying -fsanitize=${sanitize_opt}" )
         target_compile_options( regression PRIVATE "-fsanitize=${sanitize_opt}" )
