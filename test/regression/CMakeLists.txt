@@ -5,9 +5,9 @@ file( GLOB test_sources *.cpp )
 add_executable( regression ${test_sources} )
 
 if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
-    foreach( sanitize_opt IN ${SANITIZE} )
+    foreach( opt IN ${SANITIZE} )
         message( STATUS "Applying -fsanitize=${sanitize_opt}" )
-        target_compile_options( regression PRIVATE "-fsanitize=${SANITIZE}" )
+        target_compile_options( regression PRIVATE "-fsanitize=${sanitize_opt}" )
     endforeach()
 endif()
 
