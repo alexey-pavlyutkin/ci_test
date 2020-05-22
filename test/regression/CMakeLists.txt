@@ -6,7 +6,8 @@ add_executable( regression ${test_sources} )
 
 if ( NOT ${SANITIZE} STREQUAL "" )
     message( STATUS "Applying -fsanitize=${SANITIZE}" )
-    target_compile_options( regression PRIVATE "-fsanitize=${SANITIZE}" )
+    target_compile_options( regression PRIVATE "-fsanitize=${SANITIZE} -fno-omit-frame-pointer" )
+    target_link_options( regression PRIVATE "-fsanitize=${SANITIZE} -fno-omit-frame-pointer" )
 endif()
 
 #target_link_libraries( regression PRIVATE jb )
