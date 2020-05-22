@@ -8,7 +8,7 @@ if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
     foreach( sanitize_opt IN ${SANITIZE} )
         message( STATUS "Applying -fsanitize=${sanitize_opt}" )
         target_compile_options( regression PRIVATE "-fsanitize=${SANITIZE}" )
-    endforeach();
+    endforeach()
 endif()
 
 target_link_libraries( regression PRIVATE gtest gtest_main )
