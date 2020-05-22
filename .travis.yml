@@ -4,42 +4,42 @@ install: true
 matrix:
   include:
 
-  - name: "MSVC -> Win32"
-    os: windows
-    script:
-    - mkdir build && cd build
-    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Visual Studio 15 2017" ..'
-    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Debug'
-    - ctest -C Debug
-    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Release'
-    - ctest -C Release
+#  - name: "MSVC -> Win32"
+#    os: windows
+#    script:
+#    - mkdir build && cd build
+#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake -G "Visual Studio 15 2017" ..'
+#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Debug'
+#    - ctest -C Debug
+#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 && cmake --build . --config Release'
+#    - ctest -C Release
 
-  - name: "MSVC -> Win64"
-    os: windows
-    script:
-    - mkdir build && cd build
-    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake -G "Visual Studio 15 2017" ..'
-    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake --build . --config Debug'
-    - ctest -C Debug
-    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake --build . --config Release'
-    - ctest -C Release
+#  - name: "MSVC -> Win64"
+#    os: windows
+#    script:
+#    - mkdir build && cd build
+#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake -G "Visual Studio 15 2017" ..'
+#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake --build . --config Debug'
+#    - ctest -C Debug
+#    - '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64 && cmake --build . --config Release'
+#    - ctest -C Release
 
-  - name: "GCC -> Win64"
-    os: windows
-    env:
-    - CXX="/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/x86_64-w64-mingw32-g++"
-    install:
-    - choco upgrade mingw -y
-    script:
-    - mkdir build-debug && cd build-debug
-    - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
-    - cmake --build .
-    - ctest -C Debug
-    - cd ..
-    - mkdir build-release && cd build-release
-    - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
-    - cmake --build .
-    - ctest -C Release
+#  - name: "GCC -> Win64"
+#    os: windows
+#    env:
+#    - CXX="/c/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin/x86_64-w64-mingw32-g++"
+#    install:
+#    - choco upgrade mingw -y
+#    script:
+#    - mkdir build-debug && cd build-debug
+#    - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
+#    - cmake --build .
+#    - ctest -C Debug
+#    - cd ..
+#    - mkdir build-release && cd build-release
+#    - cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
+#    - cmake --build .
+#    - ctest -C Release
 
   - name: "GCC -> Linux64"
     os: linux
@@ -61,34 +61,6 @@ matrix:
     - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
     script:
     - mkdir build-debug && cd build-debug
-    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr
-    - cmake --build .
-    - ctest -C Debug
-    - cd ..
-    - mkdir build-release && cd build-release
-    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release -DBOOST_ROOT:STRING=/usr
-    - cmake --build .
-    - ctest -C Release
-
-
-  - name: "Clang -> Linux64 (Address Sanitizer)"
-    os: linux
-    dist: bionic
-    sudo: false
-    addons:
-      apt:
-        sources:
-        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
-          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
-        packages:
-        - cmake
-        - libboost-all-dev
-    env:
-    - CXX=clang++
-    install:
-    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
-    script:
-    - mkdir build-debug && cd build-debug
     - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=address
     - cmake --build .
     - ctest -C Debug
@@ -98,59 +70,88 @@ matrix:
     - cmake --build .
     - ctest -C Release
 
-  - name: "Clang -> Linux64 (Memory-Sanitizer)"
-    os: linux
-    dist: bionic
-    sudo: false
-    addons:
-      apt:
-        sources:
-        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
-          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
-        packages:
-        - cmake
-        - libboost-all-dev
-    env:
-    - CXX=clang++
-    install:
-    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
-    script:
-    - mkdir build-debug && cd build-debug
-    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=memory
-    - cmake --build .
-    - ctest -C Debug
-    - cd ..
-    - mkdir build-release && cd build-release
-    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=memory
-    - cmake --build .
-    - ctest -C Release
 
-  - name: "Clang -> Linux64 (Thread Sanitizer)"
-    os: linux
-    dist: bionic
-    sudo: false
-    addons:
-      apt:
-        sources:
-        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
-          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
-        packages:
-        - cmake
-        - libboost-all-dev
-    env:
-    - CXX=clang++
-    install:
-    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
-    script:
-    - mkdir build-debug && cd build-debug
-    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=thread
-    - cmake --build .
-    - ctest -C Debug
-    - cd ..
-    - mkdir build-release && cd build-release
-    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=thread
-    - cmake --build .
-    - ctest -C Release
+#  - name: "Clang -> Linux64 (Address Sanitizer)"
+#    os: linux
+#    dist: bionic
+#    sudo: false
+#    addons:
+#      apt:
+#        sources:
+#        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+#          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
+#        packages:
+#        - cmake
+#        - libboost-all-dev
+#    env:
+#    - CXX=clang++
+#    install:
+#    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
+#    script:
+#    - mkdir build-debug && cd build-debug
+#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=address
+#    - cmake --build .
+#    - ctest -C Debug
+#    - cd ..
+#    - mkdir build-release && cd build-release
+#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=address
+#    - cmake --build .
+#    - ctest -C Release
+
+#  - name: "Clang -> Linux64 (Memory-Sanitizer)"
+#    os: linux
+#    dist: bionic
+#    sudo: false
+#    addons:
+#      apt:
+#        sources:
+#        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+#          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
+#        packages:
+#        - cmake
+#        - libboost-all-dev
+#    env:
+#    - CXX=clang++
+#    install:
+#    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
+#    script:
+#    - mkdir build-debug && cd build-debug
+#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=memory
+#    - cmake --build .
+#    - ctest -C Debug
+#    - cd ..
+#    - mkdir build-release && cd build-release
+#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=memory
+#    - cmake --build .
+#    - ctest -C Release
+
+#  - name: "Clang -> Linux64 (Thread Sanitizer)"
+#    os: linux
+#    dist: bionic
+#    sudo: false
+#    addons:
+#      apt:
+#        sources:
+#        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+#          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
+#        packages:
+#        - cmake
+#        - libboost-all-dev
+#    env:
+#    - CXX=clang++
+#    install:
+#    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
+#    script:
+#    - mkdir build-debug && cd build-debug
+#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=thread
+#    - cmake --build .
+#    - ctest -C Debug
+#    - cd ..
+#    - mkdir build-release && cd build-release
+#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=thread
+#    - cmake --build .
+#    - ctest -C Release
+
 branches:
   only:
     dev
