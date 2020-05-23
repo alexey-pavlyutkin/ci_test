@@ -5,7 +5,7 @@ file( GLOB test_sources *.cpp )
 add_executable( regression ${test_sources} )
 
 message( STATUS "CMAKE_CXX_COMPILER_ID = ${CMAKE_CXX_COMPILER_ID}" )
-if ( ${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC" )
+if ( CMAKE_CXX_COMPILER_ID STREQUAL "MSVC" )
   target_compile_options( regression PRIVATE /W4 /WX )
 else()
   target_compile_options( regression PRIVATE -Wall -Wextra -pedantic -Werror )
