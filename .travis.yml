@@ -158,12 +158,11 @@ matrix:
 
   - name: "Clang -> macOS"
     os: osx
-    osx_image: xcode10.1
+    osx_image: xcode11.4
     env:
     - CXX=clang++
-    install:
-    - cmake --version
     script:
+    - cmake --version
     # test if meow_hash.h compiles as C
     #- touch test.c
     #- ${CC} -c -mssse3 -maes -include meow_intrinsics.h -include meow_hash.h test.c
