@@ -84,29 +84,29 @@ matrix:
 #    - cmake --build .
 #    - ctest -C Debug
 
-  - name: "Regression: GCC -> Linux64 (Release)"
-    os: linux
-    dist: bionic
-    sudo: false
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
-          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
-        packages:
-        - g++-8
-        - cmake
-        - libboost-all-dev
-    env:
-    - CXX=g++-8
-    install:
-    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
-    script:
-    - mkdir build-release && cd build-release
-    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE="Release" -DBOOST_ROOT="/usr" -DSANITIZE=address\;leak\;undefined
-    - cmake --build .
-    - ctest -C Release
+#  - name: "Regression: GCC -> Linux64 (Release)"
+#    os: linux
+#    dist: bionic
+#    sudo: false
+#    addons:
+#      apt:
+#        sources:
+#        - ubuntu-toolchain-r-test
+#        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+#          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
+#        packages:
+#        - g++-8
+#        - cmake
+#        - libboost-all-dev
+#    env:
+#    - CXX=g++-8
+#    install:
+#    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
+#    script:
+#    - mkdir build-release && cd build-release
+#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE="Release" -DBOOST_ROOT="/usr" -DSANITIZE=address\;leak\;undefined
+#    - cmake --build .
+#    - ctest -C Release
 
 #  - name: "Sanitizing: GCC -> Linux64 (All but threads)"
 #    os: linux
@@ -178,31 +178,30 @@ matrix:
 #    - cmake --build .
 #    - ctest -C Release
 
-#  - name: "Regression: Clang -> Linux-arm64 (Debug)"
-#    os: linux
-#    dist: bionic
-#    addons:
-#      apt:
-#        sources:
-#        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
-#          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
-#        packages:
-#        - cmake
-#        - libboost-all-dev
-#    env:
-#    - CXX=clang++
-#    install:
-#    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
-#    script:
-#    - mkdir build-debug && cd build-debug
-#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Debug -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=thread
-#    - cmake --build .
-#    - ctest -C Debug
-#    - cd ..
-#    - mkdir build-release && cd build-release
-#    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE:STRING=Release -DBOOST_ROOT:STRING=/usr -DSANITIZE:STRING=thread
-#    - cmake --build .
-#    - ctest -C Release
+  - name: "Regression: GCC -> Linux-ARM64 (Debug)"
+    arch: arm64
+    os: linux
+    dist: bionic
+    sudo: false
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+          key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
+        packages:
+        - g++-8
+        - cmake
+        - libboost-all-dev
+    env:
+    - CXX=g++-8
+    install:
+    - export PATH=/home/travis/bin:/home/travis/.local/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.rvm/gems/ruby-2.7.0/bin:/home/travis/.rvm/gems/ruby-2.7.0@global/bin:/home/travis/.rvm/rubies/ruby-2.7.0/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin
+    script:
+    - mkdir build-debug && cd build-debug
+    - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE="Debug" -DBOOST_ROOT="/usr"
+    - cmake --build .
+    - ctest -C Debug
 
 branches:
   only:
