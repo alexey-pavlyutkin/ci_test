@@ -189,9 +189,14 @@ matrix:
         - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
           key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
         packages:
-        - g++-8
         - cmake
-        - libboost-all-dev
+        - gcc-4.7-arm-linux-gnueabihf
+        - gcc-4.7-multilib-arm-linux-gnueabihf
+        - binutils-arm-linux-gnueabihf
+        - libgcc1-armhf-cross
+        - libsfgcc1-armhf-cross
+        - libstdc++6-armhf-cross
+        - libstdc++6-4.7-dev-armhf-cross
     env:
     - CXX=clang++
     install:
