@@ -190,8 +190,8 @@ matrix:
           key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
         packages:
         - cmake
-        - clang-7
-        - lld-7
+#        - clang-7
+#        - lld-7
         - libc6-dev-arm64-cross
         - libgcc-4.8-dev-arm64-cross
         - libstdc++-4.8-dev-arm64-cross
