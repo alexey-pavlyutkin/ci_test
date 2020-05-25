@@ -10,12 +10,10 @@ else()
   target_compile_options( regression PRIVATE -Wall -Wextra -pedantic -Werror )
 endif()
 
-if ( CMAKE_CXX_COMPILER_ID STREQUAL "GNU" )
-    foreach( opt ${SANITIZE} )
-        target_compile_options( regression PRIVATE -fsanitize=${opt} )
-        target_link_options( regression PRIVATE -fsanitize=${opt} )
-    endforeach()
-endif()
+foreach( opt ${SANITIZE} )
+    target_compile_options( regression PRIVATE -fsanitize=${opt} )
+    target_link_options( regression PRIVATE -fsanitize=${opt} )
+endforeach()
 
 target_link_libraries( regression PRIVATE gtest gtest_main )
 
