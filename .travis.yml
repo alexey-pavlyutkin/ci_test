@@ -194,9 +194,9 @@ matrix:
         - cmake
         - clang-7
         - lld-7
-        - libc6-dev-arm64-cross
-        - libgcc-4.8-dev-arm64-cross
-        - libstdc++-4.8-dev-arm64-cross
+#        - libc6-dev-arm64-cross
+#        - libgcc-4.8-dev-arm64-cross
+#        - libstdc++-4.8-dev-arm64-cross
     env:
     - CXX=clang++
     install:
