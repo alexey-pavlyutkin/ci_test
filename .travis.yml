@@ -180,15 +180,16 @@ matrix:
 
   - name: "Regression: Clang -> Linux-ARM64 (Debug)"
     os: linux
-    dist: trusty
+    dist: bionic
     sudo: false
     addons:
       apt:
         sources:
         - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-7
         - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
           key_url: https://apt.kitware.com/keys/kitware-archive-latest.asc
+        - sourceline: 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main'
+          key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
         packages:
         - cmake
         - clang-7
