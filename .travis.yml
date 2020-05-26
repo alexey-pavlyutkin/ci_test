@@ -206,6 +206,7 @@ matrix:
     script:
     - ld -v
     - /usr/bin/aarch64-linux-gnu-ld -v
+    - ls /usr/bin
     - ls /usr/aarch64-linux-gnu
     - ls /usr/bin/aarch64-linux-gnu
     - /usr/local/clang-7.0.0/bin/ld -v
