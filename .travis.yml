@@ -206,6 +206,7 @@ matrix:
     script:
     - ld -v
     - /usr/bin/aarch64-linux-gnu-ld -v
+    - ls /usr/aarch64-linux-gnu
     - /usr/local/clang-7.0.0/bin/ld -v
     - mkdir build-debug && cd build-debug
     - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE="Debug" -DBOOST_ROOT="/usr" -DCMAKE_SYSTEM_NAME="Linux" -DCMAKE_SYSTEM_PROCESSOR="aarch64" -DCMAKE_CXX_COMPILER_TARGET="aarch64-linux-gnu"
