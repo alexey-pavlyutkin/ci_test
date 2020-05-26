@@ -204,7 +204,7 @@ matrix:
     - sudo apt-get update
     - sudo apt-get install libc6-dev-arm64-cross libgcc-8-dev-arm64-cross libstdc++-8-dev-arm64-cross
     script:
-    - ls /usr/aarch64*
+    - ld -v
     - mkdir build-debug && cd build-debug
     - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE="Debug" -DBOOST_ROOT="/usr" -DCMAKE_SYSTEM_NAME="Linux" -DCMAKE_SYSTEM_PROCESSOR="aarch64" -DCMAKE_CXX_COMPILER_TARGET="aarch64-linux-gnu"
     - cmake --build .
