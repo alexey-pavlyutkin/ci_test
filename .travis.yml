@@ -192,7 +192,7 @@ matrix:
           key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
         packages:
         - cmake
-        - libboost-all-dev
+        - libboost-all-dev:arm64
         - clang-7
         - lld-7
 #        - libc6-dev-arm64-cross
